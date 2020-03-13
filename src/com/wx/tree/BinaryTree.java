@@ -11,6 +11,7 @@ public class BinaryTree {
     //创建二叉树
     public static void createTree(Integer[] arr, TreeNode[] nodes) {
         for (int i = 0; i < arr.length; i++) {
+            if (arr[i]!=null)
             nodes[i] = new TreeNode(arr[i]);
             nodes[i].left = null;
             nodes[i].right = null;

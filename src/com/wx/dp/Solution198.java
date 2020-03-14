@@ -1,4 +1,5 @@
 package com.wx.dp;
+
 //********************************************************************************************
 //        198. House Robber
 //        Easy
@@ -22,6 +23,8 @@ package com.wx.dp;
 //        Total amount you can rob = 2 + 9 + 1 = 12.
 //********************************************************************************************
 public class Solution198 {
+
+    //递归
     public static int rob(int[] nums) {
         if (nums.length == 0) return 0;
         int[] dp = new int[nums.length];
@@ -41,13 +44,26 @@ public class Solution198 {
         return dp[index];
     }
 
+    //递推
+    public static int rob2(int[] nums) {
+        if (nums.length == 0) return 0;
+        if (nums.length == 1) return nums[0];
+        int[] dp = new int[nums.length];
+        dp[0] = nums[0];
+        dp[1] = Math.max(nums[0], nums[1]);
+        for (int index = 2; index < nums.length; index++) {
+            dp[index] = Math.max(nums[index] + dp[index - 2], dp[index - 1]);
+        }
+        return dp[nums.length - 1];
+    }
+
     public static void main(String[] args) {
         int[] nums = {114, 117, 207, 117, 235, 82, 90, 67, 143, 146, 53, 108, 200,
                 91, 80, 223, 58, 170, 110, 236, 81, 90, 222, 160, 165, 195,
                 187, 199, 114, 235, 197, 187, 69, 129, 64, 214, 228, 78,
                 188, 67, 205, 94, 205, 169, 241, 202, 144, 240};
 //        int[] nums = {1, 2, 3, 1};
-        int x = rob(nums);
+        int x = rob2(nums);
         System.out.println(x);
 
     }
